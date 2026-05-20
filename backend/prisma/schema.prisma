@@ -1,0 +1,106 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+
+  // Profile fields
+  age            Int?
+  weight         Float?
+  height         Float?
+  goal           String?  // LOSE_WEIGHT | GAIN_MUSCLE | MAINTAIN
+  experience     String?  // BEGINNER | INTERMEDIATE | ADVANCED
+  onboarded      Boolean  @default(false)
+
+  workouts       WorkoutPlan[]
+  meals          MealPlan[]
+  messages       ChatMessage[]
+  calories       CalorieAnalysis[]
+  supplements    SupplementSuggestion[]
+  passwordResets PasswordReset[]
+}
+
+model WorkoutPlan {
+  id         String   @id @default(cuid())
+  userId     String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title      String
+  goal       String
+  days       Int
+  experience String
+  equipment  String
+  // Stored as JSON string: [{day:"Day 1 - Push", exercises:[{id, name, sets, reps, done}]}]
+  data       String
+  createdAt  DateTime @default(now())
+}
+
+model MealPlan {
+  id            String   @id @default(cuid())
+  userId        String
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title         String
+  calorieTarget Int
+  goal          String
+  preference    String
+  // JSON: { breakfast:[{name,calories}], lunch:[...], dinner:[...], snacks:[...] }
+  data          String
+  createdAt     DateTime @default(now())
+}
+
+model ChatMessage {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role      String   // "user" | "assistant"
+  content   String
+  createdAt DateTime @default(now())
+}
+
+model CalorieAnalysis {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  imageName   String?
+  description String?
+  mealName    String
+  calories    Int
+  protein     Float?
+  carbs       Float?
+  fat         Float?
+  confidence  String
+  notes       String
+  // JSON array of detected food items and nutrition estimates.
+  data        String
+  createdAt   DateTime @default(now())
+}
+
+model SupplementSuggestion {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  goal      String
+  summary   String
+  // JSON object with nutrition gaps, suggestions, and safety disclaimer.
+  data      String
+  createdAt DateTime @default(now())
+}
+
+model PasswordReset {
+  id        String   @id @default(cuid())
+  userId    String
+  tokenHash String   @unique
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
