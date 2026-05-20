@@ -8,14 +8,8 @@ FitAI Coach is an AI-powered fitness and nutrition web application for universit
 
 | Member | Feature |
 |--------|---------|
-| Member 1 | Authentication System — register, login, logout, protected routes |
-| Member 2 | User Goal Setup & Profile — age, weight, height, goal, experience |
-| Member 3 | AI Workout Generator — personalised weekly workout plans |
-| Member 4 | AI Meal Planner — calorie-targeted daily meal plans |
-| Member 5 | AI Personal Chatbot — fitness and nutrition Q&A |
-| Member 6 | AI Calorie Check by Photo — meal photo and description analysis |
-| Member 7 | Supplement AI Suggestions — goal-matched supplement recommendations |
-| Member 8 | Dashboard & Music Bar — summary dashboard and workout music player |
+| EHSAN  | Authentication System — register, login, logout, protected routes User Goal Setup & Profile — age, weight, height, goal, experience AI Workout Generator — personalised weekly workout plans AI Meal Planner — calorie-targeted daily meal plans  AI Personal Chatbot — fitness and nutrition Q&A |
+|SHIKEB| AI Calorie Check by Photo — meal photo and description analysis Supplement AI Suggestions — goal-matched supplement recommendations Dashboard & Music Bar — summary dashboard and workout music player |
 
 ---
 
