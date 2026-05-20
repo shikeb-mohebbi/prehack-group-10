@@ -91,21 +91,21 @@ fitai-coach/
     │   ├── lib/
     │   ├── types/
     │   └── modules/
-    │       ├── auth/             # Member 1
+    │       ├── auth/             
     │       │   ├── apis/
     │       │   ├── components/
     │       │   ├── pages/
     │       │   ├── routers/
     │       │   ├── schemas/
     │       │   └── types/
-    │       ├── profile/          # Member 2
-    │       ├── workouts/         # Member 3
-    │       ├── meals/            # Member 4
-    │       ├── chat/             # Member 5
-    │       ├── calorie-check/    # Member 6
-    │       ├── supplements/      # Member 7
-    │       ├── dashboard/        # Member 8
-    │       ├── music/            # Member 8
+    │       ├── profile/          
+    │       ├── workouts/         
+    │       ├── meals/            
+    │       ├── chat/             
+    │       ├── calorie-check/    
+    │       ├── supplements/      
+    │       ├── dashboard/       
+    │       ├── music/            
     │       └── landing/
     └── package.json
 ```
