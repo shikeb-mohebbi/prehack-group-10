@@ -4,12 +4,16 @@ FitAI Coach is an AI-powered fitness and nutrition web application for universit
 
 ---
 
-## Members and Features
+## Team Members and Feature Assignments
 
-| Member | Feature |
-|--------|---------|
-| EHSAN  | Authentication System — register, login, logout, protected routes User Goal Setup & Profile — age, weight, height, goal, experience AI Workout Generator — personalised weekly workout plans AI Meal Planner — calorie-targeted daily meal plans  AI Personal Chatbot — fitness and nutrition Q&A |
-|SHIKEB| AI Calorie Check by Photo — meal photo and description analysis Supplement AI Suggestions — goal-matched supplement recommendations Dashboard & Music Bar — summary dashboard and workout music player |
+| # | Member | GitHub | Assigned CRUD Feature | Branch |
+|---|--------|--------|-----------------------|--------|
+| 1 | Shikeb Mohebbi | [@shikeb-mohebbi](https://github.com/shikeb-mohebbi) | AI Calorie Check by Photo | `feature/calorie-check` |
+| 2 | Intouch Lewbandansook | [@IntouchKMUTT](https://github.com/IntouchKMUTT) | Supplement AI Suggestions | `feature/supplements` |
+| 3 | Ehsan Ullah Erfani | [@ehsanerfani222-ship-it](https://github.com/ehsanerfani222-ship-it) | AI Workout Generator | `feature/workouts` |
+| 4 | Jassmen Osman | [@jasmin2929](https://github.com/jasmin2929) | AI Meal Planner | `feature/meals` |
+
+> **Note:** Authentication (register, login, logout, JWT cookie, password reset) is shared supporting infrastructure and does **not** count as one of the 4 required CRUD features.
 
 ---
 
@@ -62,18 +66,18 @@ fitai-coach/
 │   │   ├── middleware/
 │   │   │   └── auth.ts           # JWT middleware, signToken, setAuthCookie
 │   │   └── modules/
-│   │       ├── auth/             # Member 1
+│   │       ├── auth/             # shared — not a CRUD feature
 │   │       │   ├── controllers/
 │   │       │   ├── models/
 │   │       │   ├── routers/
 │   │       │   ├── schemas/
 │   │       │   └── types/
-│   │       ├── profile/          # Member 2
-│   │       ├── workouts/         # Member 3
-│   │       ├── meals/            # Member 4
-│   │       ├── chat/             # Member 5
-│   │       ├── calorie-check/    # Member 6
-│   │       └── supplements/      # Member 7
+│   │       ├── profile/          # shared onboarding/profile
+│   │       ├── workouts/         # Ehsan Ullah Erfani — feature/workouts
+│   │       ├── meals/            # Jassmen Osman — feature/meals
+│   │       ├── chat/             # shared AI chatbot
+│   │       ├── calorie-check/    # Shikeb Mohebbi — feature/calorie-check
+│   │       └── supplements/      # Intouch Lewbandansook — feature/supplements
 │   ├── package.json
 │   ├── tsconfig.json
 │   └── .env.example
@@ -283,17 +287,13 @@ Feature branches follow this naming convention:
 git checkout -b feature/<feature-name>
 ```
 
-Examples:
+The 4 required feature branches for this project:
 
 ```
-feature/auth
-feature/profile
-feature/workouts
-feature/meal-planner
-feature/chat
-feature/calorie-check
-feature/supplements
-feature/dashboard
+feature/calorie-check   # Shikeb Mohebbi
+feature/supplements     # Intouch Lewbandansook
+feature/workouts        # Ehsan Ullah Erfani
+feature/meals           # Jassmen Osman
 ```
 
 Before final submission:
