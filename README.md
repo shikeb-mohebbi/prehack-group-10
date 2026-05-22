@@ -4,6 +4,12 @@ FitAI Coach is an AI-powered fitness and nutrition web application for universit
 
 ---
 
+## Project Report
+
+[View Full Project Report](docs/fitai-coach-group-10-report.html)
+
+---
+
 ## Team Members and Feature Assignments
 
 | # | Member | GitHub | Assigned CRUD Feature | Branch |

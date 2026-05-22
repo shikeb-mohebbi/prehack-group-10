@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Project Report & Presentation: FitAI Coach</title>
+    <style>
+        :root {
+            --primary: #e11d48;
+            --primary-dark: #9f1239;
+            --bg-dark: #07070b;
+            --panel-dark: #0d0d16;
+            --text-light: #f3f4f6;
+            --text-muted: #9ca3af;
+            --border: #242434;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        header h1 span {
+            color: var(--primary);
+        }
+
+        .meta-info {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-top: 10px;
+        }
+
+        /* Presentation Slides Layout */
+        .slide-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .slide {
+            background: linear-gradient(160deg, var(--panel-dark) 0%, #07070e 100%);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 40px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .slide:hover {
+            border-color: rgba(225, 29, 72, 0.4);
+        }
+
+        .slide-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+
+        .slide-header h2 {
+            font-size: 1.8rem;
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .slide-badge {
+            background-color: rgba(225, 29, 72, 0.15);
+            color: var(--primary);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 1px solid rgba(225, 29, 72, 0.3);
+        }
+
+        .slide-content h3 {
+            color: var(--primary);
+            margin: 20px 0 10px 0;
+            font-size: 1.2rem;
+        }
+
+        .slide-content p {
+            color: var(--text-light);
+            margin-bottom: 15px;
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+            color: var(--text-light);
+        }
+
+        li {
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        li strong {
+            color: #fff;
+        }
+
+        /* Architectural Diagram Component */
+        .diagram-box {
+            background: #11111f;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        /* Code Block Styling */
+        pre {
+            background-color: #050508;
+            border: 1px solid var(--border);
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.85rem;
+            color: #34d399;
+            margin: 15px 0;
+        }
+
+        /* Two Column Layout inside Slide */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        @media (max-width: 768px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+            .slide {
+                padding: 25px;
+            }
+        }
+
+        /* Academic Table styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.9rem;
+        }
+
+        th, td {
+            border: 1px solid var(--border);
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #11111f;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        td {
+            background-color: rgba(255,255,255,0.02);
+        }
+
+        .footer-note {
+            position: absolute;
+            bottom: 15px;
+            right: 40px;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .citation {
+            color: var(--primary);
+            font-weight: 600;
+            cursor: help;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <header>
+        <h1>Academic Engineering Report & Presentation</h1>
+        <div class="meta-info">
+            <strong>Project Title:</strong> FitAI Coach &mdash; Full-Stack Autonomous Fitness & Nutrition Synthesis System<br>
+            <strong>Prepared by:</strong> Group 10<br>
+            <strong>Team Members:</strong> Shikeb Mohebbi, Intouch Lewbandansook, Ehsan Ullah Erfani, Jassmen Osman<br>
+            <strong>System Time Context:</strong> May 2026
+        </div>
+    </header>
+
+    <div class="slide-container">
+
+        <section class="slide" id="slide-abstract">
+            <div class="slide-header">
+                <h2>1. Executive Abstract & System Topology</h2>
+                <span class="slide-badge">Overview</span>
+            </div>
+            <div class="slide-content">
+                <p>
+                    The <strong>FitAI Coach</strong> ecosystem establishes an engineered approach toward individualized human health tracking, analytics, and interactive behavioral modification. Operating on a decoupled client-server architecture model, the platform pairs an immutable reactive user interface with an extensible storage mechanism running dynamic relational data maps.
+                </p>
+                <p>
+                    By leveraging state-of-the-art hosted Large Language Models (LLMs) via accelerated hardware entry-points (Groq hardware acceleration), the framework moves beyond rigid heuristic calculation fields into generative context-aware instruction generation.
+                </p>
+                <div class="grid-2">
+                    <div>
+                        <h3>Core System Competencies</h3>
+                        <ul>
+                            <li><strong>Dynamic Hyper-Personalization:</strong> Algorithmic workload synthesis matching real-time user metrics.</li>
+                            <li><strong>Heuristic Conversational State:</strong> State-managed persistent LLM contextual awareness.</li>
+                            <li><strong>Multimodal Computer Vision:</strong> Image parsing pipelines yielding immediate macronutrient estimations.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Engineering Paradigm</h3>
+                        <p>
+                            All systems are built on strong asynchronous patterns designed for resilience and performance under memory-capped computational limits.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-note">Slide 1 / 10</div>
+        </section>
+
+        <section class="slide" id="slide-stack">
+            <div class="slide-header">
+                <h2>2. Distributed System Tech Stack</h2>
+                <span class="slide-badge">Architecture</span>
+            </div>
+            <div class="slide-content">
+                <p>
+                    The decoupled state machine segregates presentation logic from persistent state handling to enforce structural boundaries and security isolating layers.
+                </p>
+                
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Layer Component</th>
+                            <th>Technological Implementations</th>
+                            <th>Functional Mechanics</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Frontend Framework</strong></td>
+                            <td>React 18.3, TypeScript, Vite Bundler</td>
+                            <td>Declarative view mutations with typed abstraction schemas.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>State Hydration</strong></td>
+                            <td>TanStack React Query v5</td>
+                            <td>Asynchronous cache management, optimistic layout synchronization.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Backend Engine</strong></td>
+                            <td>Node.js runtime running Express modules</td>
+                            <td>Non-blocking execution pooling for concurrent client management.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Data Persistence</strong></td>
+                            <td>Prisma ORM over SQLite/PostgreSQL targets</td>
+                            <td>Data layer abstraction maps generating type-safe database queries.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="footer-note">Slide 2 / 10</div>
+        </section>
+
+        <section class="slide" id="slide-data">
+            <div class="slide-header">
+                <h2>3. Relational Schema Data Modeling</h2>
+                <span class="slide-badge">Database Design</span>
+            </div>
+            <div class="slide-content">
+                <p>
+                    The underlying infrastructure maps object models relational layouts over deterministic constraints. The schema is engineered around cascade constraints to protect data integrity.
+                </p>
+                <div class="grid-2">
+                    <div>
+                        <h3>Core Data Entities</h3>
+                        <ul>
+                            <li><strong>User Object Model:</strong> Houses core structural payload maps including weight metrics, onboarding state, and physical thresholds.</li>
+                            <li><strong>Cascade Topologies:</strong> <code>MealPlan</code>, <code>WorkoutPlan</code>, and <code>ChatMessage</code> objects maintain explicit <code>onDelete: Cascade</code> constraints pointing to parent models to avoid table isolation.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Prisma Target Manifest</h3>
+                        <pre>model User {
+  id        String        @id @default(cuid())
+  email     String        @unique
+  password  String
+  weight    Float?
+  workouts  WorkoutPlan[]
+  meals     MealPlan[]
+  onboarded Boolean       @default(false)
+}</pre>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-note">Slide 3 / 10</div>
+        </section>
+
+        <section class="slide" id="slide-security">
+            <div class="slide-header">
+                <h2>4. Stateful Middleware & Authentication System</h2>
+                <span class="slide-badge">Security</span>
+            </div>
+            <div class="slide-content">
+                <p>
+                    Session persistence operates on a strict stateless signature map running JSON Web Tokens (JWT) inside protected HTTP cookies. This design completely blocks client-side malicious extraction avenues (Cross-Site Scripting vector targets).
+                </p>
+                <h3>Security Logic Flows</h3>
+                <ol>
+                    <li><strong>Token Interception:</strong> Inbound connection request cookies are inspected by backend processing pipelines.</li>
+                    <li><strong>Cryptographic Verification:</strong> Signed tokens are decoded utilizing asymmetric platform environments (<code>process.env.JWT_SECRET</code>).</li>
+                    <li><strong>Context Inject:</strong> Decoded identifiers are placed within system routing blocks for internal user isolation.</li>
+                </ol>
+                <pre>export function requireAuth(req: AuthRequest, res: Response, next: NextFunction) {
+  const token = req.cookies?.token;
+  if (!token) return res.status(401).json({ error: "Not authenticated" });
+  try {
+    const payload = jwt.verify(token, process.env.JWT_SECRET!) as { sub: string };
+    req.userId = payload.sub;
+    next();
+  } catch { return res.status(401).json({ error: "Invalid token" }); }
+}</pre>
+            </div>
+            <div class="footer-note">Slide 4 / 10</div>
+        </section>
+
+        <section class="slide" id="slide-ai">
+            <div class="slide-header">
+                <h2>5. High-Throughput Hardware LLM Inference</h2>
+                <span class="slide-badge">Groq Integration</span>
+            </div>
+            <div class="slide-content">
+                <p>
+                    To resolve latency bottlenecks during system processing turns, inference executions pass outside standard virtualization hosts directly onto optimized high-throughput hardware matrices provided by <strong>Groq API endpoints</strong> running Llama family foundation models.
+                </p>
+                <div class="diagram-box">
+                    <strong>Inference Serialization Pipeline:</strong><br>
+                    Client Context Vector &rarr; Backend Schema Mapping &rarr; Hardware Execution Endpoint (Groq) &rarr; Rigid Format Structural Response &rarr; Client Rehydration
+                </div>
+                <h3>System Parameters Configuration</h3>
+                <ul>
+                    <li><strong>Default Target Model:</strong> <code>llama-3.1-8b-instant</code> for deterministic textual processing pipelines.</li>
+                    <li><strong>Vision Target Model:</strong> <code>meta-llama/llama-4-scout-17b-16e-instruct</code> for processing image assets.</li>
+                    <li><strong>Temperature Thresholds:</strong> Set to low constraints (e.g., <code>0.2 - 0.4</code>) to enforce structural compliance and block hallucination artifacts during calculation loops.</li>
+                </ul>
+            </div>
+            <div class="footer-note">Slide 5 / 10</div>
+        </section>
+
+        <section class="slide" id="slide-workout">
+            <div class="slide-header">
+                <h2>6. Generative Workout Customization Models</h2>
+                <span class="slide-badge">Algorithmic Training</span>
+            </div>
+            <div class="slide-content">
+                <p>
+                    Rather than operating on rigid database lookups, training protocols use text layout models prompted with specific parameters containing physical capability constraints.
+                </p>
+                <div class="grid-2">
+                    <div>
+                        <h3>Algorithmic Configuration Values</h3>
+                        <ul>
+                            <li><strong>Target splits:</strong> Ranging from 3 to 6 microcycle tracks.</li>
+                            <li><strong>Modality Constraints:</strong> Enforces environmental constraints (e.g., separating <code>HOME</code> setups from commercial <code>GYM</code> gear).</li>
+                            <li><strong>Safe Processing Maps:</strong> Structural sanitization modules catch raw model text returns and cast them to standardized type definitions.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Prompt Matrix Mechanics</h3>
+                        <p>
+                            System layers configure contextual frameworks requesting structured JSON returns to map exercises, sets, reps, and programmatic identification tags for the UI layer.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-note">Slide 6 / 10</div>
+        </section>
+
+        <section class="slide" id="slide-vision">
+            <div class="slide-header">
+                <h2>7. Multimodal Computer Vision Caloric Pipeline</h2>
+                <span class="slide-badge">Vision Pipeline</span>
+            </div>
+            <div class="slide-content">
+                <p>
+                    The <code>CalorieCheck</code> service implements data ingestion schemas capable of parsing high-resolution camera data urls alongside manual text descriptions.
+                </p>
+                
+                
+                <h3>Ingestion Processing Chain</h3>
+                <ol>
+                    <li><strong>Binary Serialization:</strong> Asset payloads are captured, scaled downwards beneath strict limits, and cast to base64 signatures.</li>
+                    <li><strong>Context Packing:</strong> Visual tokens combine with user descriptions inside multipart configuration blocks.</li>
+                    <li><strong>Uncertainty Quantification:</strong> Instruct algorithms compile metric tracking tables alongside confidence metadata parameters.</li>
+                </ol>
+            </div>
+            <div class="footer-note">Slide 7 / 10</div>
+        </section>
+
+        <section class="slide" id="slide-chat">
+            <div class="slide-header">
+                <h2>8. Contextual Windowing & Conversation Memory</h2>
+                <span class="slide-badge">State Management</span>
+            </div>
+            <div class="slide-content">
+                <p>
+                    To protect LLM context length capacities and eliminate system token overflow exceptions, a custom contextual rolling sliding memory block window handles interaction sequences.
+                </p>
+                <div class="grid-2">
+                    <div>
+                        <h3>Memory Parameter Configurations</h3>
+                        <ul>
+                            <li><strong>Active Memory Boundary (<code>CONTEXT_WINDOW</code>):</strong> Fixed to a strict limit of 20 interaction fields sent down to the core engine on each turn.</li>
+                            <li><strong>Database Caching Limits (<code>MAX_HISTORY</code>):</strong> Retains a database layer map up to 200 components for the user interface historical display.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Sliding Window Mechanics</h3>
+                        <p>
+                            Connections read records sequentially using descending configurations, then reverse array structures to maintain natural conversation history loops prior to token construction tasks.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-note">Slide 8 / 10</div>
+        </section>
+
+        <section class="slide" id="slide-recovery">
+            <div class="slide-header">
+                <h2>9. Cryptographic Account Protection Protocols</h2>
+                <span class="slide-badge">Operations</span>
+            </div>
+            <div class="slide-content">
+                <p>
+                    To protect user records from unauthorized reset attempts, the verification layer separates transport vectors from static persistent storage models.
+                </p>
+                <h3>Token Storage Protection Strategy</h3>
+                <ul>
+                    <li><strong>Decoupled Transport Identifiers:</strong> Raw random verification links pass securely out through external email platforms (Nodemailer pipelines).</li>
+                    <li><strong>One-Way Hash Protection:</strong> Only cryptographic hashes (computed via one-way SHA-256 pathways) are committed to the data tables.</li>
+                    <li><strong>Database Leak Mitigation:</strong> Even in the event of an complete database extraction breach, an attacker cannot intercept active link hashes to perform identity thefts.</li>
+                </ul>
+            </div>
+            <div class="footer-note">Slide 9 / 10</div>
+        </section>
+
+        <section class="slide" id="slide-conclusion">
+            <div class="slide-header">
+                <h2>10. Deployment Topology & System Evaluation</h2>
+                <span class="slide-badge">Production Deployment</span>
+            </div>
+            <div class="slide-content">
+                <p>
+                    The production distribution topology ensures global availability by containerizing and isolating tasks into separate virtual platforms.
+                </p>
+                <div class="grid-2">
+                    <div>
+                        <h3>Hosted Architecture</h3>
+                        <ul>
+                            <li><strong>Client-Side Application Hosting:</strong> Delivered globally using content networks with complete static route rewrites (Vercel targets).</li>
+                            <li><strong>Backend Container Engine:</strong> Deployed inside a virtual runtime environment operating health checking boundaries (Railway infrastructure engine).</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>System Synthesis Impact</h3>
+                        <p>
+                            By integrating specialized hardware acceleration endpoints with type-safe backend environments and state caching layers, FitAI Coach demonstrates how autonomous machine systems can safely handle personal human biomechanical routines at scale.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-note">Slide 10 / 10</div>
+        </section>
+
+    </div>
+
+</div>
+
+</body>
+</html>
